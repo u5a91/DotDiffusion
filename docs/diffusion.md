@@ -118,7 +118,7 @@ $$
 \mathcal{L}
 =
 \mathbb{E}_{x_0, t, \epsilon}
-\left[\left\|\epsilon - \epsilon_\theta(x_t, t)\right\|^2\right].
+\left[\left\|\epsilon - \epsilon_\theta(x_t, t)\right\|_2^2\right].
 $$
 
 This corresponds to:
@@ -286,3 +286,13 @@ Future extensions may include:
 - text conditioning
 - image-to-image conditioning
 - discrete diffusion for palette-based pixel art
+
+## References
+
+- Jonathan Ho, Ajay Jain, Pieter Abbeel.  
+  *Denoising Diffusion Probabilistic Models*. NeurIPS 2020.  
+  https://arxiv.org/abs/2006.11239
+
+- Hugging Face Blog.  
+  *The Annotated Diffusion Model*.  
+  https://huggingface.co/blog/annotated-diffusion
