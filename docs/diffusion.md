@@ -35,14 +35,7 @@ Let $T$ be the number of diffusion timesteps.
 The implementation uses a linear beta schedule:
 
 $$
-\beta_t
-=
-\beta_{\text{start}}
-+
-\frac{t}{T - 1}
-(\beta_{\text{end}} - \beta_{\text{start}})
-\quad
-(t = 0, \ldots, T-1).
+\beta_t = \beta_{\text{start}} + \frac{t}{T - 1}(\beta_{\text{end}} - \beta_{\text{start}}) \quad (t = 0, \ldots, T-1).
 $$
 
 Then define:
@@ -74,21 +67,13 @@ The forward process gradually adds Gaussian noise to a clean image $x_0$.
 The closed-form distribution is:
 
 $$
-q(x_t \mid x_0)
-=
-\mathcal{N} \left(\sqrt{\bar{\alpha}_t} x_0, (1 - \bar{\alpha}_t) I\right).
+q(x_t \mid x_0) = \mathcal{N} \left(\sqrt{\bar{\alpha}_t} x_0, (1 - \bar{\alpha}_t) I\right).
 $$
 
 Equivalently, we can sample $x_t$ as:
 
 $$
-x_t
-=
-\sqrt{\bar{\alpha}_t} x_0
-+
-\sqrt{1 - \bar{\alpha}_t} \epsilon,
-\quad
-\epsilon \sim \mathcal{N}(0, I).
+x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon, \quad \epsilon \sim \mathcal{N}(0, I).
 $$
 
 This corresponds to:
@@ -115,10 +100,7 @@ Then noise $\epsilon$ is sampled, and $x_t$ is constructed by the forward proces
 The model is trained to predict the added noise:
 
 $$
-\mathcal{L}
-=
-\mathbb{E}_{x_0, t, \epsilon}
-\left[\left\|\epsilon - \epsilon_\theta(x_t, t)\right\|_2^2\right].
+\mathcal{L} = \mathbb{E}_{x_0, t, \epsilon} \left[\left\|\epsilon - \epsilon_\theta(x_t, t)\right\|_2^2\right].
 $$
 
 This corresponds to:
@@ -158,39 +140,19 @@ $$
 The implementation uses the DDPM mean parameterization:
 
 $$
-\mu_\theta(x_t, t)
-=
-\frac{1}{\sqrt{\alpha_t}}
-\left(
-x_t
--
-\frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}}
-\epsilon_\theta(x_t, t)
-\right).
+\mu_\theta(x_t, t) = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}}\epsilon_\theta(x_t, t)\right).
 $$
 
 Then one reverse step is sampled as:
 
 $$
-x_{t-1}
-=
-\mu_\theta(x_t, t)
-+
-\sigma_t z,
-\quad
-z \sim \mathcal{N}(0, I).
+x_{t-1} = \mu_\theta(x_t, t) + \sigma_t z, \quad z \sim \mathcal{N}(0, I).
 $$
 
 The variance is currently set to the posterior variance:
 
 $$
-\sigma_t^2
-=
-\tilde{\beta}_t
-=
-\beta_t
-\frac{1 - \bar{\alpha}_{t-1}}
-{1 - \bar{\alpha}_t}.
+\sigma_t^2 = \tilde{\beta}_t = \beta_t\frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t}.
 $$
 
 This corresponds to:
