@@ -122,7 +122,9 @@ class GaussianDiffusion(nn.Module):
         batch_size = x0.shape[0]
         device = x0.device
 
-        t = torch.randint(0, self.timesteps, (batch_size,), device=device, dtype=torch.long)
+        t = torch.randint(
+            0, self.timesteps, (batch_size,), device=device, dtype=torch.long
+        )
         noise = torch.randn_like(x0)
         xt = self.q_sample(x0, t, noise)
 
