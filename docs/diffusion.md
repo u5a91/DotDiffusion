@@ -13,7 +13,7 @@ The denoising neural network is not defined here.
 It is passed from outside and is expected to have the following interface:
 
 $$
-    \epsilon_\theta(x_t, t) \approx \epsilon
+\epsilon_\theta(x_t, t) \approx \epsilon
 $$
 
 In code:
@@ -48,13 +48,13 @@ $$
 Then define:
 
 $$
-    \alpha_t = 1 - \beta_t
+\alpha_t = 1 - \beta_t
 $$
 
 and
 
 $$
-    \bar{\alpha}_t = \prod_{s=0}^{t} \alpha_s.
+\bar{\alpha}_t = \prod_{s=0}^{t} \alpha_s.
 $$
 
 The code stores these values as buffers:
