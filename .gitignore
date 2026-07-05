@@ -216,3 +216,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# DotDiffusion local artifacts
+data/*
+!data/.gitkeep
+
+outputs/*
+!outputs/.gitkeep
+
+checkpoints/*
+!checkpoints/.gitkeep
+
+runs/
+wandb/
+mlruns/
