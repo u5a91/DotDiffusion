@@ -75,6 +75,7 @@ class ResidualBlock(nn.Module):
         self.act2 = nn.SiLU()
         self.conv2 = nn.Conv2d(out_channels, out_channels, kernel_size=3, padding=1)
 
+        self.shortcut: nn.Module
         if in_channels == out_channels:
             self.shortcut = nn.Identity()
         else:

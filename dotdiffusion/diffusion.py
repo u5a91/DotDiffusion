@@ -26,6 +26,14 @@ def _extract(a: torch.Tensor, t: torch.Tensor, x_shape: torch.Size) -> torch.Ten
 
 
 class GaussianDiffusion(nn.Module):
+    betas: torch.Tensor
+    alphas: torch.Tensor
+    alpha_bars: torch.Tensor
+    alpha_bars_prev: torch.Tensor
+    sqrt_alpha_bars: torch.Tensor
+    sqrt_one_minus_alpha_bars: torch.Tensor
+    sqrt_recip_alphas: torch.Tensor
+    posterior_variance: torch.Tensor
     """
     Minimal Gaussian DDPM implementation.
 
