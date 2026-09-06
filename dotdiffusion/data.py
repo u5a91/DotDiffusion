@@ -39,9 +39,10 @@ class ImageFolderDataset(Dataset[torch.Tensor]):
         with Image.open(self.paths[index]) as image_file:
             image = image_file.convert("RGB")
             image = _center_crop_square(image)
+            # Use the average color of each cell as its representative color.
             image = image.resize(
                 (self.image_size, self.image_size),
-                resample=Image.Resampling.NEAREST,
+                resample=Image.Resampling.BOX,
             )
             tensor = TF.pil_to_tensor(image).float() / 255.0
             tensor = tensor * 2.0 - 1.0
