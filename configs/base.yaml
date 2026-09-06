@@ -1,0 +1,24 @@
+data_dir: data
+image_size: 32
+
+batch_size: 1
+num_workers: 0
+
+epochs: 1
+learning_rate: 0.0001
+
+base_channels: 32
+time_emb_dim: 64
+
+timesteps: 10
+beta_start: 0.0001
+beta_end: 0.02
+
+seed: 0
+device: cpu
+
+save_every: 1
+sample_count: 1
+
+checkpoint_dir: checkpoints
+output_dir: outputs
